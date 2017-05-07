@@ -26,6 +26,6 @@ Windows Registry Editor Version 5.00
 
 remember, process command line is very important. 
 you can also use it when correation search, find out abnormal activities like malware process's informations.
-
+If you use on defaults, i recommend configure this immediately.
 
 ## get the logparser

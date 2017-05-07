@@ -1,11 +1,14 @@
 ## preparation
- - [set the audit policy](#audit-policy)
- - [set the process command line logging policy](#commandline-policy)
- - [get logparser](#get-the-logparser)
+ - [Set the Audit Policy](#Audit-policy)
+ - [Set the Process Command Line logging Policy](#Process-command-line-policy)
+ - [Get the Logparser](#Get-the-logparser)
 
-## audit-policy
+## Audit-policy
+ When you want parse the event logs, you have to set the audit logs policies.
+ If not configure the audit log policies, system make the event logs by default value.
+ And you have to set the event log size enough.
 
-## commandline-policy
+## Process Command Line Policy
  In the security event id 4688 "Process Creation" log can offer prcoess creation activity. 
  so you must analyse the event id 4688 when incident occurs. 
  but the defaults doesn't offers process command line arguments.
@@ -23,9 +26,15 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system\Audit]
 "ProcessCreationIncludeCmdLine_Enabled"=dword:00000001
 ```
+ - tips.
+```sh
+Event id 4688 is only created when process creation is success.
+It means failed process doesn't make the logs.
+In other words, you don't have to worry about not creating, missed events.
+```
 
-remember, process command line is very important. 
-you can also use it when correation search, find out abnormal activities like malware process's informations.
-If you use on defaults, i recommend configure this immediately.
+Remember, process command line is very important. 
+You can also use it when correation search, find out abnormal activities like malware process's informations.
+Most of people doesn't know this. if you use on defaults, configure immediately.
 
-## get the logparser
+## Get the logparser

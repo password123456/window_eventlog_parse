@@ -184,7 +184,7 @@ Most of people doesn't know this. if you use on defaults, configure immediately.
 ```
 
 - After installation, run the logparser
-<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/visual_logparser.png">
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/visual_logparser.PNG">
 
 
 

@@ -57,7 +57,7 @@ System
 - Audit Security State Change
 - Audit Security System Extension
 ```
- - Set the event log size. Default is 20MB. i recommended at least 200MB.
+ - Next, set the event log size. Default is 20MB. i recommend at least 200MB.
  - if you have active directory you can also set this as GPO.
  - belows are sample script written in vbscript
 ```sh

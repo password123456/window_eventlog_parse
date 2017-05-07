@@ -1,4 +1,4 @@
-## preparation
+## Preparation
  - [Set the Audit Policy](#audit-policy)
  - [Set the Process Command Line logging Policy](#process-command-line-policy)
  - [Get the Logparser](#get-the-logparser)
@@ -17,7 +17,7 @@
 
  - If you want set the policy selectively, you can use advanced audit policy configuration. 
  - Through this you can set the audit policy items individual. so you can prevent unnecessary event creation and reduce the event log size.
- - If you have active directory you can make these GPO and deploy all of server.
+ - If you have active directory you can make these as GPO and deploy all of server.
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/advanced_audit_policy1.png">
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/advanced_audit_policy2.png">
@@ -58,8 +58,8 @@ System
 - Audit Security System Extension
 ```
  - Next, set the event log size. Default is 20MB. i recommend at least 200MB.
- - if you have active directory you can also set this as GPO.
- - belows are sample script written in vbscript
+ - If you have active directory you can also set this as GPO.
+ - Belows are sample script written in vbscript
 ```sh
 '--------------------------------------------------------
 ' set windows eventlog size
@@ -94,7 +94,6 @@ Function SET_EVENTLOG_SIZE(eventlog, log_size)
         SET_EVENTLOG_SIZE = ret
     end if
 end function
-
 
 Function SET_EVENT_LOG_SET_SIZE(TITLE)
     dim strComputer, i
@@ -167,8 +166,20 @@ It means failed process doesn't make the logs.
 In other words, you don't have to worry about not creating, missed events.
 ```
 
-Remember, process command line is very important. 
-You can also use it when correation search, find out abnormal activities like malware process's informations.
+Remember, process command line entity is very important. 
+You can use it when correation search, find out abnormal activities like malware process's informations.
 Most of people doesn't know this. if you use on defaults, configure immediately.
 
 ## Get the logparser
+ It is a difficult to Log analyzing just using event viewer in the tens thousands of logs. 
+ You have to get and use logparse tool. there are many kinds of log analyzer.
+ I recommend to you Microsoft LogParser and analyzer.
+ It's free and portable, no special enviroment. just install and use.
+
+- Install the MS LogParser.<a href="https://www.microsoft.com/en-us/download/details.aspx?id=24659">(get this)</a>
+- Get the LogParse. I recommend two. Just download and run.
+```sh
+1. Visual Logparser (https://visuallogparser.codeplex.com/)
+2. MS LogParser Studio (https://gallery.technet.microsoft.com/Log-Parser-Studio-cd458765)
+```
+

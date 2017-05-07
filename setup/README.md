@@ -176,10 +176,15 @@ Most of people doesn't know this. if you use on defaults, configure immediately.
  I recommend to you Microsoft LogParser and analyzer.
  It's free and portable, no special enviroment. just install and use.
 
-- Install the MS LogParser.<a href="https://www.microsoft.com/en-us/download/details.aspx?id=24659">(get this)</a>
+- Install the MS LogParser.<a href="https://www.microsoft.com/en-us/download/details.aspx?id=24659">(get here)</a>
 - Get the LogParse. I recommend two. Just download and run.
 ```sh
 1. Visual Logparser (https://visuallogparser.codeplex.com/)
 2. MS LogParser Studio (https://gallery.technet.microsoft.com/Log-Parser-Studio-cd458765)
 ```
+
+- After installation, run the logparser
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/visual_logparser.png">
+
+
 

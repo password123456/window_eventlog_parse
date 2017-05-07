@@ -8,7 +8,56 @@
  If not configure the audit log policies, system make the event logs by default value.
  And you have to set the event log size enough.
 
-## Process Command Line Policy
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/audit_policy1.png">
+
+ - start > run > secpol.msc
+ - configure all audit policies as success, failure
+
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/audit_policy2.png">
+
+ - if you want set the policy selectively, you can use advanced audit policy configuration. 
+ - Through this you can set the audit policy items individual. so you can prevent unnecessary event creation and reduce the event log size.
+
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/advanced_audit_policy1.png">
+
+ - Below are recommended configuration.
+```sh
+Account Management
+- Audit Security Group Management
+- Audit User Account Management
+
+Detailed Tracking
+- Audit Process Creation
+- Audit Process Temination
+
+Logon/Logoff
+- Audit Account Lockout
+- Audit Logoff
+- Audit Logon
+- Audit Other Logon/Logoff Events
+- Audot Special Logon
+
+Object Access
+- Audit Detailed File Share
+- Audit File Share
+- Audit Other Object Access Events
+- Audit SAM
+
+
+Policy Change
+- Audit Audit Policy Change
+- Audit Authentication Policy Change
+- Audit MPSSVC Rule-Level Policy Change
+
+Privilege Use
+- Audit Sensitive Privilege Use
+
+System
+- Audit Security State Change
+- Audit Security System Extension
+```
+
+## Process Command line Policy
  In the security event id 4688 "Process Creation" log can offer prcoess creation activity. 
  so you must analyse the event id 4688 when incident occurs. 
  but the defaults doesn't offers process command line arguments.

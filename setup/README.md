@@ -1,7 +1,7 @@
 ## preparation
- - [Set the Audit Policy](#Audit-policy)
- - [Set the Process Command Line logging Policy](#Process-command-line-policy)
- - [Get the Logparser](#Get-the-logparser)
+ - [Set the Audit Policy](#audit-policy)
+ - [Set the Process Command Line logging Policy](#process-command-line-policy)
+ - [Get the Logparser](#get-the-logparser)
 
 ## Audit-policy
  When you want parse the event logs, you have to set the audit logs policies.
@@ -15,12 +15,14 @@
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/audit_policy2.png">
 
- - if you want set the policy selectively, you can use advanced audit policy configuration. 
+ - If you want set the policy selectively, you can use advanced audit policy configuration. 
  - Through this you can set the audit policy items individual. so you can prevent unnecessary event creation and reduce the event log size.
+ - If you have active directory you can make these GPO and deploy all of server.
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/advanced_audit_policy1.png">
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/setup/advanced_audit_policy2.png">
 
- - Below are recommended configuration.
+ - Below are recommended advanced audit policy configuration.
 ```sh
 Account Management
 - Audit Security Group Management
@@ -43,7 +45,6 @@ Object Access
 - Audit Other Object Access Events
 - Audit SAM
 
-
 Policy Change
 - Audit Audit Policy Change
 - Audit Authentication Policy Change
@@ -55,6 +56,90 @@ Privilege Use
 System
 - Audit Security State Change
 - Audit Security System Extension
+```
+ - Set the event log size. Default is 20MB. i recommended at least 200MB.
+ - if you have active directory you can also set this as GPO.
+ - belows are sample script written in vbscript
+```sh
+'--------------------------------------------------------
+' set windows eventlog size
+'--------------------------------------------------------
+Function SET_EVENTLOG_SIZE(eventlog, log_size)
+    dim objFSO
+    dim objWSHShell, strCMD
+    dim strSystemRoot, strWEVUTIL
+    dim ret
+
+    Set objWSHShell = CreateObject("WScript.Shell")
+    Set objFSO= CreateObject("Scripting.FileSystemObject")
+    
+    strSystemRoot = objWSHShell.ExpandEnvironmentStrings( "%SystemRoot%" )        
+    strWEVUTIL = strSystemRoot & "\system32\wevtutil.exe"
+    
+    If objFSO.FileExists( strWEVUTIL ) Then        
+        strCMD = "%comspec% /c %SYSTEMROOT%\system32\"'strCMD header
+        ret = objWSHShell.run(strCMD & "wevtutil sl " & eventlog & " /ms:" & log_size & """",0,True)
+        wscript.sleep 1000
+        ret = ret + ret
+        
+        if ret <> 0 then
+            ret = 1
+        else
+            wscript.echo "  [+] '" & eventlog & " Log' set to " & log_size & " bytes."
+            ret = 0
+        end if        
+        SET_EVENTLOG_SIZE = ret            
+    else
+        ret = 2
+        SET_EVENTLOG_SIZE = ret
+    end if
+end function
+
+
+Function SET_EVENT_LOG_SET_SIZE(TITLE)
+    dim strComputer, i
+    dim objWMIService, colItems, objitem
+    dim EVENTLOG_LIST
+    dim eventname, set_logsize, eventname2
+    dim list, log_list, eventlist
+    dim retSetlog
+    
+    strComputer = "."
+    Set objWMIService = GetObject("winmgmts:\\" & strComputer & "\root\CIMV2")
+    Set colItems = objWMIService.ExecQuery( _
+        "SELECT * FROM Win32_NTEventLogFile",,48)
+
+    EVENTLOG_LIST=array("Application","System","Security")
+    
+    for each objItem in colItems
+        for i=Lbound(EVENTLOG_LIST) to Ubound(EVENTLOG_LIST)
+            if StrComp(lcase(EVENTLOG_LIST(i)), lcase(objItem.LogFileName), 1) = 0 Then
+                objItem.MaxFileSize = Round(objItem.MaxFileSize / 1024, 1)
+                if objItem.MaxFileSize < 307200 Then
+                       eventname = eventname & objItem.LogFileName & ","
+                end if
+            end if
+        next
+    next
+      
+    set_logsize = 314572800
+    list=Split(eventname,",")
+
+    for each log_list in list
+        If not len(log_list) = 0 Then
+            'wscript.echo "vul eventlog : " & log_list
+            retSetlog = SET_EVENTLOG_SIZE(log_list,set_logsize)
+        end if
+    next
+    
+    if retSetlog = 2 then
+        wscript.echo "[-] ERROR " & TITLE & " wevtutil.exe not found."
+    elseif retSetlog = 0 then
+        wscript.echo " [OK] SET: " & TITLE
+    else
+        wscript.echo " [FAIL] SET: " & TITLE
+    end if        
+end Function    
 ```
 
 ## Process Command line Policy

@@ -1,5 +1,3 @@
-# setup
-
 ## preparation
  - [set audit policy](#audit-policy)
  - [set process command line](#commandline-policy)

@@ -6,8 +6,8 @@
  - Windows vista over
 
 ## Table of contents
- - <a href="https://github.com/password123456/window_eventlog_parse/tree/master/setup">setup and get logparser</a>
- - eventlog parse using logparser
+ - <a href="https://github.com/password123456/window_eventlog_parse/tree/master/setup">Setup and Get LogParser</a>
+ - <a href="https://github.com/password123456/window_eventlog_parse/tree/master/logparse">Eventlog Analyze using LogParser</a> 
  - Microsoft sysmon
  - eventlog parse using splunk
  - what is the next?

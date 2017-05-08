@@ -77,6 +77,8 @@ System | . | 7045 | New Service installed the system
 
 
  **2. A various of Logon type**
+
+
 Logon Type | Description
 --------- | ---------
 2         | Logon at the console of system(but, mstsc /console command or some of RDP tool use this logon)

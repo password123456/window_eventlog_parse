@@ -94,6 +94,7 @@ Logon Type | Description
 
 
  **3. Identify same account user**
+
  How can we identify and analyze same account user logon logs?
  Just simple. you can use Logon ID value expressed with Hexadecimal in the event log as identify.
  (you can also use source Network Address value but sometimes this value crafted by hacker. And if the system infected with malware and if malware run as reverse proxy, some of malware connect RDP as localhost to pass the firewall. in the result of these cases, you can not use source Network Address value as identify. )

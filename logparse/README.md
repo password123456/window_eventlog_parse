@@ -78,7 +78,7 @@ System | . | 7045 | New Service installed the system
 
  **2. A various of Logon type**
 Logon Type | Description
---------- |  ---------
+--------- | ---------
 2 | Logon at the console of system(but, mstsc /console command or some of RDP tool use this logon)
 3 | Network Logon (Based on NTLM Authentication. shared folder,IIS, Default share, psexec) If logon 3 event increased, you can guess bruteforce attack
 4 | Batch Logon (like a scheduled task)

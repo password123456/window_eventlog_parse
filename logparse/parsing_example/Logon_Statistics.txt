@@ -1,0 +1,14 @@
+SELECT
+RESOLVE_SID( EXTRACT_TOKEN( Strings, 5, '|' ) ) AS Login_Account, 
+SUM( CASE EventType WHEN 8 THEN 1 ELSE 0 END ) AS Login_Success,
+SUM( CASE EventType WHEN 16 THEN 1 ELSE 0 END ) AS Login_Fail, 
+Count(*) AS Total
+FROM Security
+WHERE 
+EventCategory = 12544
+AND
+EventID < 4637
+AND
+Login_Account <> ''
+GROUP BY Login_Account
+ORDER BY Total DESC

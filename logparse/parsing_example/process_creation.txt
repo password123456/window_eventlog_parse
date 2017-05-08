@@ -1,0 +1,10 @@
+SELECT
+TimeGenerated AS time,
+RESOLVE_SID( EXTRACT_TOKEN(Strings, 1, '|') ) AS UserName,
+EXTRACT_TOKEN(Strings, 3, '|') AS LogonID,
+HEX_TO_INT(EXTRACT_TOKEN(Strings, 4, '|')) AS New_process_id,
+HEX_TO_INT(EXTRACT_TOKEN(Strings, 7, '|')) AS created_process_id,
+EXTRACT_TOKEN(Strings, 5, '|') AS executed_process,
+EXTRACT_TOKEN(Strings, 8, '|') AS executed_process_cmdline
+FROM Security
+WHERE EventID=4688

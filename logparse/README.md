@@ -5,6 +5,7 @@
  This section i will explain with the Visual Log Parser.
 
  - Usage of the Visual Log Parser.
+
  It's very simple. write quey in query section and just run.
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/visual_logparser_uasge.png">
@@ -74,7 +75,7 @@ Security | . | 1102 | The audit log was cleared
 system | . | 104 | The Application(system) log file was cleared.
 System | . | 7036 | System Service running status (start/stop)
 System | . | 7040 | Modify System Service status (manual/stop/disable)
-System | . | 7045 | New Service installed the system
+System | . | 7045 | A new Service installed in the system
 
 
  **2. A various of Logon type**
@@ -98,7 +99,7 @@ Logon Type | Description
  How can we identify and analyze same account user logon logs?
 
  Just simple. you can use Logon ID value expressed with Hexadecimal in the event log as identify.
- you can also use source Network Address value but sometimes this value crafted by hacker. And if the system infected with malware and if malware run as reverse proxy, some of malware connect RDP as localhost to pass the firewall. in the result of these cases, you can not use source Network Address value as identify.
+ you can also use source Network Address value but sometimes this value crafted by hacker. And if the system infected with malware and if malware run as reverse proxy, some of malware connect RDP as localhost to pass the firewall. in the result of these cases, you had better not use source Network Address value as identify.
 
  **But the Logon ID value is dfficult to crafting.**
 
@@ -109,8 +110,25 @@ Logon Type | Description
 
  **By Logon ID you can trace everything of user's activity.**
 
- **Do you use Microsoft sysmon? the Logon ID value is same. you can do correlation search together.**
+ **Do you use Microsoft sysmon? Logon ID value is same. You can do correlation search together.**
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id_example.png">
 
  - Log parse rules.
+
+ Next, you have to plan Log parse rules. As I mentioned before, each rule had better based on the 5w1h.
+ Below are a few examples that have been used actually.
+ There's one thing to remember.Log Parser does not support JOIN or similar grammer completely.
+ so sometimes you may not parse as you wants. but most of the cases it will satisfy.
+ If you have SIEM or Correlation tools, it will be more powerful when use together.
+
+ 1. Terminal Service Logon statistics.
+ 2. Process Creation Tracking
+ 3. Logon Account Success/Failure statistics.
+ 4. Registed schedule Task Tracking.
+ 5. EventLog removal Tracking.
+ 6. Detail Logon Tracking.
+ 
+
+ 
+ 

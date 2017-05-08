@@ -1,0 +1,9 @@
+SELECT 
+TimeGenerated AS Time,
+RESOLVE_SID(EXTRACT_TOKEN(strings, 1, '|')) AS UserName, 
+EXTRACT_TOKEN(strings, 3, '|') AS Logon_ID,
+EXTRACT_TOKEN(strings, 4, '|') AS Schedule_Task_Name,									
+EXTRACT_TOKEN(strings, 5, '|') AS Schedule_Task_Info
+
+FROM security
+WHERE EventID = 4698

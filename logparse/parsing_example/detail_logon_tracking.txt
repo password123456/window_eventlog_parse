@@ -1,0 +1,62 @@
+SELECT					            
+TO_STRING( TimeGenerated, 'yyyy-MM-dd HH:mm:ss' ) as Login_Time,
+	                            
+CASE EventID
+ WHEN 4624 THEN 'Logon(4624)'
+ WHEN 4634 THEN 'Logoff(4634)'
+ WHEN 4636 THEN '로그온(4636)'
+ WHEN 4778 THEN 'Terminal_session_reconnect'
+ WHEN 4779 THEN 'disconnect_Terminal_service_session'
+END AS 이벤트ID,
+
+CASE EventID
+ WHEN 4624 THEN EXTRACT_TOKEN(Strings, 7, '|')
+ WHEN 4634 THEN EXTRACT_TOKEN(Strings, 3, '|')
+ WHEN 4778 THEN EXTRACT_TOKEN(Strings, 2, '|')
+ WHEN 4779 THEN EXTRACT_TOKEN(Strings, 2, '|')
+END AS LogonID,
+
+CASE EventID
+ WHEN 4624 THEN RESOLVE_SID( EXTRACT_TOKEN(Strings, 5, '|') )  
+ WHEN 4634 THEN RESOLVE_SID( EXTRACT_TOKEN(Strings, 1, '|') )
+ WHEN 4636 THEN RESOLVE_SID( EXTRACT_TOKEN(Strings, 1, '|') )
+ WHEN 4778 THEN RESOLVE_SID( EXTRACT_TOKEN(Strings, 0, '|') )
+ WHEN 4779 THEN RESOLVE_SID( EXTRACT_TOKEN(STrings, 0, '|') )
+END AS Login_Account,
+                            
+CASE EventID
+ WHEN 4624 THEN EXTRACT_TOKEN(Strings,8,'|')
+ WHEN 4634 THEN EXTRACT_TOKEN(Strings,8,'|')
+ WHEN 4636 THEN EXTRACT_TOKEN(Strings,8,'|')
+END AS Logon_Type,
+
+CASE EventID
+ WHEN 4624 THEN EXTRACT_TOKEN(Strings, 18, '|')
+ WHEN 4778 THEN EXTRACT_TOKEN(Strings, 5, '|')
+ WHEN 4779 THEN EXTRACT_TOKEN(Strings, 5, '|')
+END AS Remote_IP,
+
+CASE EventID
+ WHEN 4778 THEN EXTRACT_TOKEN(Strings, 3, '|')       
+ WHEN 4779 THEN EXTRACT_TOKEN(Strings, 3, '|')  
+END AS RDPSession,                          	
+
+CASE EventID
+ WHEN 4778 THEN EXTRACT_TOKEN(Strings, 4, '|')
+ WHEN 4779 THEN EXTRACT_TOKEN(Strings, 4, '|')
+END AS Remote_hostname,
+
+CASE EventID
+  WHEN 4624 THEN EXTRACT_TOKEN(Strings, 9, '|')
+  WHEN 4636 THEN EXTRACT_TOKEN(Strings, 9, '|')
+END AS Logon_Process,
+
+CASE EventID
+ WHEN 4624 THEN EXTRACT_TOKEN(Strings, 10, '|')
+ WHEN 4636 THEN EXTRACT_TOKEN(Strings, 10, '|')
+END AS Auth_Package                           
+
+FROM Security
+WHERE EventID IN (4624; 4634; 4636; 4778; 4779)
+AND Login_Account <> ''                          
+	                           

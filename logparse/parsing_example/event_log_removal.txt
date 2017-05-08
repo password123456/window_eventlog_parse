@@ -1,0 +1,16 @@
+select   
+ EventLog AS Log_type,
+ TimeGenerated AS TIme,
+  
+ CASE EventID
+ 	WHEN 104 THEN 'System: EventLog was cleared.'
+ 	WHEN 1102 THEN 'Security: EventLog was cleared.'
+ END AS Message,
+ 
+ CASE EventID
+  	WHEN 1102  THEN EXTRACT_TOKEN(strings, 1 , '|')
+ 	WHEN 104   THEN EXTRACT_TOKEN(strings, 0 , '|')								
+ END AS UserName
+ 
+ From system,security
+ where eventID IN (104;1102)

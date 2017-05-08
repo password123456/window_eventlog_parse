@@ -14,6 +14,7 @@
  And you have to know event id's knowledge as much as possible.
 
  - some tips for event id knowledge
+
  **1. At least you should know Event id lists (you can get .xls file <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35753">here)</a>**
 
 
@@ -74,8 +75,10 @@ System | . | 7036 | System Service running status (start/stop)
 System | . | 7040 | Modify System Service status (manual/stop/disable)
 System | . | 7045 | New Service installed the system
 
+
  **2. A various of Logon type**
 Logon Type | Description
+--------- |  ---------
 2 | Logon at the console of system(but, mstsc /console command or some of RDP tool use this logon)
 3 | Network Logon (Based on NTLM Authentication. shared folder,IIS, Default share, psexec) If logon 3 event increased, you can guess bruteforce attack
 4 | Batch Logon (like a scheduled task)
@@ -85,5 +88,6 @@ Logon Type | Description
 9 | Like a runas /netonly command log. this ocurs when the program use runas command with account switch for remote connection.  
 10 | RemoteInteractive (Terminal Services, Remote Desktop or Remote Assistance)
 11 | CachedInteractive (logon with cached logon) If system is in the active directory, when network connecction problems occurs, system use cached logon.
+
 
  **3. Identify same account user**

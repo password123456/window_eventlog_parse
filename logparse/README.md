@@ -14,11 +14,64 @@
  And you have to know event id's knowledge as much as possible.
 
  - some tips for event id knowledge
- 1. Event ids you have to know
- - you can get <a href="http://download.microsoft.com/download/2/d/f/2df05493-32e0-465b-8be2-78afed9ee456/windows%207%20and%20windows%20server%202008%20r2%20security%20event%20descriptions.xls">here</a>
+ 1. Event id lists you have to know (you can get <a href="http://download.microsoft.com/download/2/d/f/2df05493-32e0-465b-8be2-78afed9ee456/windows%207%20and%20windows%20server%202008%20r2%20security%20event%20descriptions.xls">here)</a>
 
 
 Category | Subcategory | Event ID | Message Summary
 --------- | --------- | --------- | --------- 
 System | Security System Extension | 4610 | An authentication package has been loaded by the Local Security Authority.
+System | Security System Extension | 4611 | A trusted logon process has been registered with the Local Security Authority.
+System | Security System Extension | 4622 | A security package has been loaded by the Local Security Authority.
+System | Security System Extension | 4697 | A service was installed in the system.
+System | Other System Events | 5024 | The Windows Firewall Service has started successfully.
+System | Other System Events | 5025 | The Windows Firewall Service has been stopped.
+System | Other System Events | 5034 | The Windows Firewall Driver has been stopped.
+System | Other System Events | 5035 | The Windows Firewall Driver failed to start.
+System | Other System Events | 5037 | The Windows Firewall Driver detected critical runtime error. Terminating.
+Policy Change | MPSSVC Rule-Level Policy Change | 4946 | A change has been made to Windows Firewall exception list. A rule was added.
+Policy Change | MPSSVC Rule-Level Policy Change | 4947 | A change has been made to Windows Firewall exception list. A rule was modified.
+Policy Change | MPSSVC Rule-Level Policy Change | 4948 | A change has been made to Windows Firewall exception list. A rule was deleted.
+Policy Change | MPSSVC Rule-Level Policy Change | 4949 | Windows Firewall settings were restored to the default values.
+Policy Change | Audit Policy Change | 4719 | System audit policy was changed.
+Policy Change | Audit Policy Change | 4817 | Auditing settings on an object were changed.
+Logon/Logoff | Logon | 4624 | An account was successfully logged on.
+Logon/Logoff | Logon | 4625 | An account failed to log on.
+Logon/Logoff | Logon | 4648 | A logon was attempted using explicit credentials.
+Logon/Logoff | Logoff | 4634 | An account was logged off.
+Logon/Logoff | Logoff | 4647 | User initiated logoff.
+Logon/Logoff | Other Logon/Logoff Events | 4649 | A replay attack was detected.
+Logon/Logoff | Other Logon/Logoff Events | 4778 | A session was reconnected to a Window Station.
+Logon/Logoff | Other Logon/Logoff Events | 4779 | A session was disconnected from a Window Station.
+Logon/Logoff | Other Logon/Logoff Events | 4800 | The workstation was locked.
+Logon/Logoff | Other Logon/Logoff Events | 4801 | The workstation was unlocked.
+Logon/Logoff | Other Logon/Logoff Events | 4802 | The screen saver was invoked.
+Logon/Logoff | Other Logon/Logoff Events | 4803 | The screen saver was dismissed.
+Detailed Tracking | Process Creation | 4688 | A new process has been created.
+Detailed Tracking | Process Termination | 4689 | A process has exited.
+Object Access | Other Object Access Events | 4698 | A scheduled task was created.
+Object Access | Other Object Access Events | 4699 | A scheduled task was deleted.
+Object Access | Other Object Access Events | 4700 | A scheduled task was enabled.
+Object Access | Other Object Access Events | 4701 | A scheduled task was disabled.
+Object Access | Other Object Access Events | 4702 | A scheduled task was updated.
+Object Access | File Share | 5140 | A network share object was accessed.
+Object Access | File Share | 5142 | A network share object was added.
+Object Access | File Share | 5143 | A network share object was modified.
+Object Access | File Share | 5144 | A network share object was deleted.
+Account Management | User Account Management | 4720 | A user account was created.
+Account Management | User Account Management | 4722 | A user account was enabled.
+Account Management | User Account Management | 4723 | An attempt was made to change an account's password.
+Account Management | User Account Management | 4724 | An attempt was made to reset an account's password.
+Account Management | User Account Management | 4725 | A user account was disabled.
+Account Management | User Account Management | 4726 | A user account was deleted.
+Account Management | User Account Management | 4738 | A user account was changed.
+Account Management | User Account Management | 4740 | A user account was locked out.
+Account Management | User Account Management | 4781 | The name of an account was changed:
+Account Management | Other Account Management Events | 4782 | The password hash an account was accessed.
+Account Management | Other Account Management Events | 4793 | The Password Policy Checking API was called.
+Security | . | 1102 | The audit log was cleared
+system | . | 104 | The Application(system) log file was cleared.
+System | . | 7036 | System Service running status (start/stop)
+System | . | 7040 | Modify System Service status (manual/stop/disable)
+System | . | 7045 | New Service installed the system
+
 

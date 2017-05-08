@@ -13,9 +13,9 @@
  If possible, each rule must have based on the 5w1h.
  And you have to know event id's knowledge as much as possible.
 
- - Here are some tips about event id knowledge
+ - A few tips about event id knowledge
 
- **1. At least you should know Event id lists 
+ **1. At least you should know these event id. 
 (you can get .xls file <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35753">here)</a>**
 
 
@@ -105,7 +105,9 @@ Logon Type | Description
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id.png">
 
  When user logon, system create to user unique Logon ID value expressed with Hexadecimal and It use until user initiated logoff.
- system will change the value new one every time when user logon. by this you can trace everything of user's activity.
+ system will change the value new one every time when user logon. 
+
+ **By Logon ID you can trace everything of user's activity.**
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id_example.png">
 

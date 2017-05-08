@@ -13,7 +13,7 @@
  If possible, each rule must have based on the 5w1h.
  And you have to know event id's knowledge as much as possible.
 
- - some tips for event id knowledge
+ - Here are some tips about event id knowledge
 
  **1. At least you should know Event id lists 
 (you can get .xls file <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35753">here)</a>**
@@ -100,8 +100,13 @@ Logon Type | Description
  Just simple. you can use Logon ID value expressed with Hexadecimal in the event log as identify.
  you can also use source Network Address value but sometimes this value crafted by hacker. And if the system infected with malware and if malware run as reverse proxy, some of malware connect RDP as localhost to pass the firewall. in the result of these cases, you can not use source Network Address value as identify.
 
- **But the Logon ID value is very dfficult to crafting.**
+ **But the Logon ID value is dfficult to crafting.**
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id.png">
+
+ When user logon, system create to user unique Logon ID value expressed with Hexadecimal and It use until user initiated logoff.
+ system will change the value new one every time when user logon. by this you can trace everything of user's activity.
+
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id_example.png">
 
  - Log parse rules.

@@ -109,6 +109,8 @@ Logon Type | Description
 
  **By Logon ID you can trace everything of user's activity.**
 
+ **Are you use Microsoft sysmon? the Logon ID value is same. you can do correlation search together.**
+
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id_example.png">
 
  - Log parse rules.

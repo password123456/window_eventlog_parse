@@ -15,7 +15,8 @@
 
  - some tips for event id knowledge
 
- **1. At least you should know Event id lists (you can get .xls file <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35753">here)</a>**
+ **1. At least you should know Event id lists 
+(you can get .xls file <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35753">here)</a>**
 
 
 Category | Subcategory | Event ID | Message Summary
@@ -81,15 +82,23 @@ System | . | 7045 | New Service installed the system
 
 Logon Type | Description
 --------- | ---------
-2         | Logon at the console of system(but, mstsc /console command or some of RDP tool use this logon)
-3         | Network Logon (Based on NTLM Authentication. shared folder,IIS, Default share, psexec) If logon 3 event increased, you can guess bruteforce attack
-4         | Batch Logon (like a scheduled task)
-5         | Windows Service Logon (account information log when windows service startup)
-7         | Unlock (When connect to RDP idle session, session protected with password by screen saver)
-8         | NetworkCleartext (similar 3 logon type but Logon credential sent in the plain text. Most often indicates a logon to IIS with "basic authentication")
-9         | Like a runas /netonly command log. this ocurs when the program use runas command with account switch for remote connection.  
-10        | RemoteInteractive (Terminal Services, Remote Desktop or Remote Assistance)
-11        | CachedInteractive (logon with cached logon) If system is in the active directory, when network connecction problems occurs, system use cached logon.
+2 | Logon at the console of system. but mstsc /console command or some of RDP tool use this logon sometimes.
+3 | Network Logon (Based on NTLM Authentication. shared folder,IIS, Default share, psexec) If the logon 3 event increased, you can guess ID/PW bruteforce attack
+4 | Batch Logon (Like a scheduled task)
+5 | Windows Service Logon (Account information logon log set in windows service)
+7 | Unlock (When connect to RDP idle session, session protected with password by screen saver)
+8 | NetworkCleartext (Similar 3 logon type but Logon credential sent in the plain text. Most often indicates a logon to IIS or FTP with "basic authentication")
+9 | Like a runas /netonly command log. this ocurs when the program use runas command with account switch for remote connection.  
+10 | RemoteInteractive (Terminal Services, Remote Desktop or Remote Assistance)
+11 | CachedInteractive (logon with cached logon) If system is in the active directory, when network connecction problems occurs, system use cached logon.
 
 
  **3. Identify same account user**
+ How can we identify and analyze same account user logon logs?
+ Just simple. you can use Logon ID value expressed with Hexadecimal in the event log as identify.
+ (you can also use source Network Address value but sometimes this value crafted by hacker. And if the system infected with malware and if malware run as reverse proxy, some of malware connect RDP as localhost to pass the firewall. in the result of these cases, you can not use source Network Address value as identify. )
+ But the Logon ID value is very dfficult to crafting.
+
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/logon_id.png">
+
+ - Log parse rules.

@@ -1,0 +1,40 @@
+SELECT
+TimeGenerated as Time,EventID,
+
+CASE EventID
+ WHEN 4733 THEN 'Change Local Group'
+ WHEN 4729 THEN 'Domain or WORKGROUP'
+END AS Event_Type,
+
+CASE EventID
+ WHEN 4729 THEN EXTRACT_TOKEN(Strings, 8, '|') 
+ WHEN 4733 THEN EXTRACT_TOKEN(Strings, 8, '|') 
+END AS Logon_ID,
+
+CASE EventID
+ WHEN 4729 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 5, '|'))
+ WHEN 4733 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 5, '|'))
+END AS Lgoin_Account,
+
+CASE EventID
+ WHEN 4729 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 1, '|'), '%{', ''), '}', ''))
+ WHEN 4733 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 1, '|'), '%{', ''), '}', ''))
+END AS Target_Account,
+
+CASE EventID
+ WHEN 4729 THEN EXTRACT_TOKEN(Strings, 1, '|')
+ WHEN 4733 THEN EXTRACT_TOKEN(Strings, 1, '|')
+END AS Target_Account_SID,
+
+CASE EventID
+ WHEN 4729 THEN EXTRACT_TOKEN(Strings, 2, '|')
+ WHEN 4733 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 4, '|'), '%{', ''), '}', ''))
+END AS Deleted_Group,
+
+CASE EventID
+ WHEN 4729 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 2, '|'))
+ WHEN 4733 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 2, '|'))
+END AS Deleted_Group2
+
+FROM Security
+WHERE EventID IN (4729; 4733)   

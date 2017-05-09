@@ -1,0 +1,42 @@
+SELECT
+TimeGenerated as Time,EventID,
+
+CASE EventID
+ WHEN 4720 THEN 'Account Creation'
+ WHEN 4728 THEN 'Change Domain or WORKGROUP'
+ WHEN 4732 THEN 'Change Account group'
+END AS Event_Type,
+
+CASE EventID
+ WHEN 4720 THEN EXTRACT_TOKEN(Strings, 6, '|') 
+ WHEN 4728 THEN EXTRACT_TOKEN(Strings, 8, '|') 
+ WHEN 4732 THEN EXTRACT_TOKEN(Strings, 8, '|') 
+END AS Logon_ID,
+
+CASE EventID
+ WHEN 4720 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 4, '|'))
+ WHEN 4728 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 5, '|'))
+ WHEN 4732 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 5, '|'))
+END AS Lgoin_Account,
+
+CASE EventID
+ WHEN 4720 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 0, '|'))
+ WHEN 4728 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 1, '|'), '%{', ''), '}', ''))
+ WHEN 4732 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 1, '|'), '%{', ''), '}', ''))
+END AS Target_Account,
+
+CASE EventID
+ WHEN 4720 THEN '-'
+ WHEN 4728 THEN EXTRACT_TOKEN(Strings, 2, '|')
+ WHEN 4732 THEN RESOLVE_SID(REPLACE_STR(REPLACE_STR(EXTRACT_TOKEN(Strings, 4, '|'), '%{', ''), '}', ''))
+END AS Registered_Group,
+
+CASE EventID
+ WHEN 4720 THEN '-'
+ WHEN 4728 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 2, '|'))
+ WHEN 4732 THEN RESOLVE_SID(EXTRACT_TOKEN(Strings, 2, '|'))
+END AS Registered_Group2
+
+FROM Security
+WHERE EventID IN (4720; 4732; 4728)     
+                                

@@ -130,7 +130,8 @@ Logon Type | Description
  6. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/detail_logon_tracking.txt">Detail Logon Tracking.</a>
  7. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/possible_pth.txt">Possbile PTH Attack</a>
  8. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/bruteforce_login_fail_count.txt">Login Fail Count</a>
-
+ 9. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/account_creation_tracking.txt">Account Creation Tracking</a>
+ 10. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/account_removal_tracking.txt">Account Removal Tracking</a>
 
  
 

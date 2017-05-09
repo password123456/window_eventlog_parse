@@ -1,0 +1,17 @@
+SELECT 
+TimeGenerated AS Date, 
+EXTRACT_TOKEN(Strings, 5, '|') as Username, 
+EXTRACT_TOKEN(Strings, 6, '|') as Domain, 
+EXTRACT_TOKEN(Strings, 8, '|') as LogonType, 
+EXTRACT_TOKEN(strings, 10, '|') AS AuthPackage, 
+EXTRACT_TOKEN(Strings, 11, '|') AS Workstation, 
+EXTRACT_TOKEN(Strings, 17, '|') AS ProcessName, 
+EXTRACT_TOKEN(Strings, 18, '|') AS SourceIP 
+
+FROM Security 
+WHERE EventID = 4624 
+AND Username 
+NOT IN ('SYSTEM'; 'ANONYMOUS LOGON'; 'LOCAL SERVICE'; 'NETWORK SERVICE') 
+AND Domain NOT IN ('NT AUTHORITY') 
+AND AuthPackage LIKE '%NtLmSsp%' 
+AND Username NOT LIKE '%$'

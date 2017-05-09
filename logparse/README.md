@@ -122,12 +122,16 @@ Logon Type | Description
  so sometimes you may not parse as you wants. but most of the cases it will satisfy.
  If you have SIEM or Correlation tools, it will be more powerful when use together.
 
- 1. Terminal Service Logon statistics.
- 2. Process Creation Tracking
- 3. Logon Account Success/Failure statistics.
- 4. Registed schedule Task Tracking.
- 5. EventLog removal Tracking.
- 6. Detail Logon Tracking.
+ 1. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/Terminal_Service_Logon_Statistics..txt">Terminal Service Logon statistics.</a>
+ 2. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/process_creation.txt">Process Creation Tracking</a>
+ 3. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/Logon_Statistics.txt">Logon Account Success/Failure statistics.</a>
+ 4. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/schedule_task_tracking.txt">Registed schedule Task Tracking.</a>
+ 5. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/event_log_removal.txt">EventLog removal Tracking.</a>
+ 6. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/detail_logon_tracking.txt">Detail Logon Tracking.</a>
+ 7. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/possible_pth.txt">Possbile PTH Attack</a>
+ 8. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/bruteforce_login_fail_count.txt">Login Fail Count</a>
+
+
  
 
  

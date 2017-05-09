@@ -1,0 +1,21 @@
+SELECT 
+ TO_STRING( TimeGenerated, 'yyyy-MM-dd' ) AS Time, 
+ TO_STRING(quantize( TimeGenerated, 3600 ), 'HH:mm:ss') as Hour,                                   
+ EXTRACT_TOKEN(Strings,5,'|') AS Login_Account,
+
+CASE EXTRACT_TOKEN(Strings,10,'|')
+ WHEN '2' THEN '2 CONSOLE LOGON' 
+ WHEN '3' THEN '3 NETWORK LOGON'
+ WHEN '7' THEN '7 TERMINAL SERVICE RECONNECT'
+ WHEN '10' THEN '10 TERMINAL SERVICE'
+END AS Logon_Type,
+
+EXTRACT_TOKEN(Strings,19,'|') AS Remote_IP,
+Count(*) as Total_COUNT
+
+FROM Security
+WHERE EventID IN (4625; 4626; 4627; 4628; 4629; 4630; 4631; 4633; 4635)
+AND LOGIN_Account <> ''
+
+GROUP BY Time, Hour, Login_Account, Logon_Type, REMOTE_IP 
+ORDER BY Total_COUNT DESC 

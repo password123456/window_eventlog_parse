@@ -117,10 +117,9 @@ Logon Type | Description
  - Log parse rules.
 
  Next, you have to plan Log parse rules. As I mentioned before, each rule had better based on the 5w1h.
+
  Below are a few examples that have been used actually.
- There's one thing to remember.Log Parser does not support JOIN or similar grammer completely.
- so sometimes you may not parse as you wants. but most of the cases it will satisfy.
- If you have SIEM or Correlation tools, it will be more powerful when use together.
+
 
  1. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/Terminal_Service_Logon_Statistics..txt">Terminal Service Logon statistics.</a>
  2. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/process_creation.txt">Process Creation Tracking</a>
@@ -133,6 +132,9 @@ Logon Type | Description
  9. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/account_creation_tracking.txt">Account Creation Tracking</a>
  10. <a href="https://github.com/password123456/window_eventlog_parse/blob/master/logparse/parsing_example/account_removal_tracking.txt">Account Removal Tracking</a>
 
+ There's one thing to remember.Log Parser does not support JOIN or similar grammer completely.
+ so sometimes you may not parse as you wants. but most of the cases it will satisfy.
+ If you have SIEM or Correlation tools, it will be more powerful when use together.
  
 
  

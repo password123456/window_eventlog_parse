@@ -15,7 +15,6 @@ inputs.conf
 [default]
 host = WIN-CEF0N1SQMV8
 
-
 [WinEventLog://Microsoft-Windows-Sysmon/Operational]
 index=winevt
 sourcetype=sysmon
@@ -55,12 +54,12 @@ start_from=oldest
 whitelist=104,7036,7040,7045
 ```
 
- - Next, you have to parse and set field the event log correctly. but don't worry. if you don't use splunk prior 6.0, splunk do it automatically
+ - Next, you have to parse and set field the event log correctly. but don't worry. unless you use splunk prior version 6.0, splunk do it automatically.
 
 <img src="https://github.com/password123456/window_eventlog_parse/blob/master/splunk/splunk_field_parse.png">
 
 
- 
+- so now, you have to learn splunk query grammar. i can't do instead of you. it is all up to you. below are sample queries that converted previous 10 log parser that upgraded rules or a few correlation search. these are used actually not POC. all things are based on 5w1h.
 
  
  

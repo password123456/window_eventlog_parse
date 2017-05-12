@@ -4,9 +4,10 @@
  but there is no shortage of to learn. if you learn it, i'm certainly sure, it will be helpful and powerful on your career.
 
  - Get the event log selectively to Splunk using splunkforwarder.
+ 
  You can set as you want to get logs by event id. you don't have to bring all of event log.
 
- Here is configuration. you have to choose and set event id number using whitelist directive.
+ Here is the sample configuration. you have to choose and set event id number using whitelist directive.
 
 ```sh
 inputs.conf
@@ -53,6 +54,12 @@ evt_resolve_ad_obj=1
 start_from=oldest
 whitelist=104,7036,7040,7045
 ```
+
+ - Next, you have to parse and set field the event log correctly. but don't worry. if you don't use splunk prior 6.0, splunk do it automatically
+
+<img src="https://github.com/password123456/window_eventlog_parse/blob/master/splunk/splunk_field_parse.png">
+
+
  
 
  
